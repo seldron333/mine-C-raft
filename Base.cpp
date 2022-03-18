@@ -51,7 +51,7 @@ void InitializeJson()
 }
 void UpdateBlock(int x, int y, int z)
 {
-    Block(x, y, z).WhenUpdated();
+    Block(x, y, z).WhenUpdated(x, y, z);
 }
 void UpdateAdjacentBlocks(int x, int y, int z)
 {

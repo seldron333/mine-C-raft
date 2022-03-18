@@ -6,13 +6,14 @@ public:
         air,
         grass,
         dirt,
-        stone
+        stone,
+        water
     };
     class BlockParent
     {
     public:
         BlockTypes block_id = air;
-        void WhenUpdated()
+        void WhenUpdated(int x, int y, int z)
         {
         }
         void WhenTick()
@@ -41,6 +42,24 @@ public:
         Stone()
         {
             this->block_id = stone;
+        }
+    };
+    class Water : public BlockParent
+    {
+        int State = 7;
+        Water(int q)
+        {
+            this->block_id = water;
+            State = q;
+        }
+        void WhenUpdated(int x, int y, int z)
+        {
+            if (State == 7)
+            {
+            }
+            else
+            {
+            }
         }
     };
 };
