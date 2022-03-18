@@ -4,7 +4,7 @@
         {
             "label": "Compile and Run minecraft",
             "type": "shell",
-            "command": "g++ Main.cpp -lGL -lglfw -o minecraft && ${workspaceFolder}/minecrafttestcompiled"
+            "command": "g++ Main.cpp -lGL -lglfw -o ${workspaceFolder}/minecrafttestcompiled && ${workspaceFolder}/minecrafttestcompiled"
         }
     ]
 }
