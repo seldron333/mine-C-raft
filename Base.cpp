@@ -12,7 +12,7 @@ map<pair<int, int>, Chunk> Chunks;
 
 template <typename T>
 void log(T tx) { cout << tx << endl; }
-//gadshifbsihdfihsvdhifvhs
+
 class Chunk
 {
 public:
