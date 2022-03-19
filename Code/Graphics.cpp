@@ -97,6 +97,7 @@ void StartGraphics()
 
     GLFWwindow *wd = glfwCreateWindow(800, 800, "mineCraft++", NULL, NULL);
     glfwMakeContextCurrent(wd);
+    glfwSwapInterval(1);
     GLuint buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -111,6 +112,8 @@ void StartGraphics()
     GLuint shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
 
+    int location = glGetUniformLocation(shader, "u_Color");
+    glUniform4f(location, 0.2f,0.3f,0.8f,1.0f);
     BaseFunctions::Start();
     while (!glfwWindowShouldClose(wd))
     {
