@@ -3,6 +3,7 @@
 #include <json.hpp>
 #include <vector>
 #include "Blocks.cpp"
+#include "WorldGeneration.cpp"
 using namespace std;
 using nlohmann::json;
 
@@ -25,6 +26,7 @@ public:
         z = Z;
         log("Loaded Chunk: " + to_string(x) + " , " + to_string(z));
         Chunks[{x, z}] = *this;
+        WorldGeneration::GenerateChunk(*this);
     }
     Chunk()
     {
