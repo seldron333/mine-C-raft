@@ -46,7 +46,7 @@ void UnloadChunk(int x, int z)
 }
 void InitializeJson()
 {
-    fstream temp("/home/seldron/Dropbox/C++/Minecraft/Settings.json");
+    fstream temp("./Settings.json");
     temp >> Settings;
 }
 void UpdateBlock(int x, int y, int z)

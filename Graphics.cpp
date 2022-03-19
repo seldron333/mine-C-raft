@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-int StartGraphics()
+void StartGraphics()
 {
     //Initialize glfw
     glfwInit();
@@ -17,16 +17,19 @@ int StartGraphics()
     };
 
     //Define window
-    GLFWwindow* wd;
+    GLFWwindow* wd= glfwCreateWindow(900, 800, "mineCraft++", NULL, NULL);
     //Make current context
     glfwMakeContextCurrent(wd);
-    //Create window
-    wd = glfwCreateWindow(900, 800, "mineCraft++", NULL, NULL);
     //Buffers
     GLuint* buffer;
     glGenBuffers(1, buffer);
     glBindBuffer(GL_ARRAY_BUFFER, *buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+    //Vertex
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float)*2, 0);
+    
+
     //Startup
     BaseFunctions::Start();
     //Main loop
@@ -38,5 +41,4 @@ int StartGraphics()
     }
     //Terminate
     glfwTerminate();
-    return 0;
 }
