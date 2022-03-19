@@ -2,43 +2,109 @@
 #include </usr/include/GLFW/glfw3.h>
 #include "Base.cpp"
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 using namespace std;
+
+struct ShaderProgramSource
+{
+    string VertexSource;
+    string FragmentSource;
+};
+
+ShaderProgramSource ParseShader()
+{
+    ifstream file("/home/seldron/Projects/mine-C-raft/Code/Shaders/Basic.shader");
+    enum class ShaderType
+    {
+        NONE = -1,
+        VERTEX = 0,
+        FRAGMENT = 1
+    };
+    string line;
+    stringstream strstr[2];
+    ShaderType type = ShaderType::NONE;
+    while (getline(file, line))
+    {
+        if (line.find("#shader") != string::npos)
+        {
+            if (line.find("vertex") != string::npos)
+                type = ShaderType::VERTEX;
+            else if (line.find("fragment") != string::npos)
+                type = ShaderType::FRAGMENT;
+        }
+        else
+        {
+            strstr[(int)type] << line << '\n';
+        }
+    }
+    return {strstr[0].str(), strstr[1].str()};
+}
+
+GLuint Compileshader(GLuint type, const string &source)
+{
+    GLuint id = glCreateShader(type);
+    const char *src = source.c_str();
+    glShaderSource(id, 1, &src, nullptr);
+    glCompileShader(id);
+    GLint res;
+    glGetShaderiv(id, GL_COMPILE_STATUS, &res);
+    if (res == GL_FALSE)
+    {
+        int length;
+        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+        char message[length];
+        glGetShaderInfoLog(id, length, &length, message);
+        cout << "failed to compile shader: " << message << endl;
+        glDeleteShader(id);
+        return 0;
+    }
+    return id;
+}
+GLuint CreateShader(const string &vertexshader, const string &fragmentshader)
+{
+    GLuint program = glCreateProgram();
+    GLuint vertshader = Compileshader(GL_VERTEX_SHADER, vertexshader);
+    GLuint fragshader = Compileshader(GL_FRAGMENT_SHADER, fragmentshader);
+    glAttachShader(program, vertshader);
+    glAttachShader(program, fragshader);
+    glLinkProgram(program);
+    glValidateProgram(program);
+    glDeleteShader(vertshader);
+    glDeleteShader(fragshader);
+
+    return program;
+}
 
 void StartGraphics()
 {
-    //Initialize glfw
     glfwInit();
 
-    float positions[6] = 
-    {
-        -0.5, 0.5,
-        0.5, 0.5,
-        0.5, -0.5
-    };
-
-    //Define window
-    GLFWwindow* wd= glfwCreateWindow(900, 800, "mineCraft++", NULL, NULL);
-    //Make current context
+    float positions[6] =
+        {
+            -0.5, 0.5,
+            0.5, 0.5,
+            0.5, -0.5};
+    GLFWwindow *wd = glfwCreateWindow(900, 800, "mineCraft++", NULL, NULL);
     glfwMakeContextCurrent(wd);
-    //Buffers
-    GLuint* buffer;
-    glGenBuffers(1, buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, *buffer);
+    GLuint buffer;
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
-    //Vertex
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float)*2, 0);
-    
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    ShaderProgramSource source = ParseShader();
+    GLuint shader = CreateShader(source.VertexSource, source.FragmentSource);
+    glUseProgram(shader);
 
-    //Startup
     BaseFunctions::Start();
-    //Main loop
     while (!glfwWindowShouldClose(wd))
     {
+        glClear(GL_COLOR_BUFFER_BIT);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glfwSwapBuffers(wd);
         glfwPollEvents();
     }
-    //Terminate
     glfwTerminate();
 }

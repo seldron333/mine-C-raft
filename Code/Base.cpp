@@ -26,7 +26,6 @@ public:
         z = Z;
         log("Loaded Chunk: " + to_string(x) + " , " + to_string(z));
         Chunks[{x, z}] = *this;
-        WorldGeneration::GenerateChunk(*this);
     }
     Chunk()
     {
