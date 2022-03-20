@@ -1,6 +1,6 @@
 #define GL_GLEXT_PROTOTYPES
 #include </usr/include/GLFW/glfw3.h>
-#include "Base.cpp"
+#include "Headers/MainHeader.h"
 #include <iostream>
 #include <fstream>
 #include <string>

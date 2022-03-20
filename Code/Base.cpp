@@ -1,9 +1,8 @@
+#include "./Headers/MainHeader.h"
 #include <fstream>
 #include <iostream>
 #include <json.hpp>
 #include <vector>
-#include "Blocks.cpp"
-#include "WorldGeneration.cpp"
 using namespace std;
 using nlohmann::json;
 

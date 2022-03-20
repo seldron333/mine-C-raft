@@ -1,4 +1,4 @@
-#include "Graphics.cpp"
+#include "./Headers/MainHeader.h"
 
 int main()
 {
