@@ -16,7 +16,7 @@ void log(T tx) { cout << tx << endl; }
 class Chunk
 {
 public:
-    Blocks::BlockParent blocks[16][255][16]{Blocks::Air()};
+    Blocks::BlockParent blocks[16][256][16]{Blocks::Air()};
     int x;
     int z;
     Chunk(int X, int Z)
