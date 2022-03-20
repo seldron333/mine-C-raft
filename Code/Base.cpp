@@ -74,5 +74,6 @@ public:
     static void Start()
     {
         InitializeJson();
+        Chunk(1,1);
     }
 };
