@@ -8,6 +8,7 @@
 class Chunk;
 
 Blocks::BlockParent &Block(double x, short y, double z);
+void SetBlock(Blocks::BlockParent& bl, Blocks::BlockTypes type);
 
 template <typename T>
 void log(T tx);

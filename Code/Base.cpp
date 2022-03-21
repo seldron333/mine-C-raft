@@ -25,6 +25,7 @@ public:
         z = Z;
         log("Loaded Chunk: " + to_string(x) + " , " + to_string(z));
         Chunks[{x, z}] = *this;
+
     }
     Chunk()
     {
@@ -53,6 +54,10 @@ void UpdateBlock(int x, int y, int z)
 {
     Block(x, y, z).WhenUpdated(x, y, z);
 }
+void SetBlock(Blocks::BlockParent& bl, Blocks::BlockTypes type)
+{
+    bl.block_id = type;
+}
 void UpdateAdjacentBlocks(int x, int y, int z)
 {
     UpdateBlock(x, y, z);
@@ -69,7 +74,6 @@ private:
     BaseFunctions()
     {
     }
-
 public:
     static void Start()
     {
