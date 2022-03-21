@@ -1,5 +1,5 @@
 #define GL_GLEXT_PROTOTYPES
-#include </usr/include/GLFW/glfw3.h>
+#include "../Resources/Include/GLFW/glfw3.h"
 #include "Headers/MainHeader.h"
 #include <iostream>
 #include <fstream>
@@ -15,7 +15,7 @@ struct ShaderProgramSource
 
 ShaderProgramSource ParseShader()
 {
-    ifstream file("/home/seldron/Projects/mine-C-raft/Code/Shaders/Basic.shader");
+    ifstream file("./Code/Shaders/Basic.shader");
     enum class ShaderType
     {
         NONE = -1,
