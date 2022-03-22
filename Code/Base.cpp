@@ -1,12 +1,7 @@
-#include "./Headers/MainHeader.h"
-#include <fstream>
-#include <iostream>
-#include <json.hpp>
-#include <vector>
+#include "./Headers/MainHeader.hpp"
 using namespace std;
-using nlohmann::json;
 
-json Settings;
+nlohmann::json Settings;
 class Chunk;
 map<pair<int, int>, Chunk> Chunks;
 

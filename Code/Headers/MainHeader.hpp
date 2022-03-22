@@ -1,11 +1,17 @@
 #pragma once
-#include "../Blocks.cpp"
-#include "../Entities.cpp"
-#include "../Base.cpp"
-#include "../Graphics.cpp"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <json.hpp>
+#include <sstream>
+#include "../Static/Blocks.cpp"
+#include "../Static/Entities.cpp"
 #include "../WorldGeneration.cpp"
+#include "../Base.cpp"
 
 class Chunk;
+
+void StartGraphics();
 
 Blocks::BlockParent &Block(double x, short y, double z);
 void SetBlock(Blocks::BlockParent& bl, Blocks::BlockTypes type);

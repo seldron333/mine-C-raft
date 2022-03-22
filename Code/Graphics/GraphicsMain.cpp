@@ -1,10 +1,7 @@
 #define GL_GLEXT_PROTOTYPES
-#include "../Resources/Include/GLFW/glfw3.h"
-#include "Headers/MainHeader.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
+
+#include "../Headers/GraphicsHeader.hpp"
+
 using namespace std;
 
 struct ShaderProgramSource

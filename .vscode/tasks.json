@@ -3,8 +3,32 @@
     "tasks": [
         {
             "label": "Compile and Run minecraft",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Compile minecraft",
+                "Run minecraft"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Compile minecraft",
             "type": "shell",
-            "command": "g++-11 ./Code/Main.cpp -lGL -lglfw -o ${workspaceFolder}/minecrafttestcompiled && ${workspaceFolder}/minecrafttestcompiled"
+            "command": "g++-11",
+            "args": [
+                "./Code/Main.cpp",
+                "-lGL",
+                "-lglfw",
+                "${workspaceFolder}/Code/Main.cpp",
+                "-o",
+                "${workspaceFolder}/minecrafttestcompiled"
+            ]
+        },
+        {
+            "label": "Run minecraft",
+            "type": "shell",
+            "command": "${workspaceFolder}/minecrafttestcompiled"
         }
     ]
 }

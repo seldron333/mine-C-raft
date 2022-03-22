@@ -1,8 +1,8 @@
-#include "./Headers/MainHeader.h"
+#include "./Headers/MainHeader.hpp"
 class WorldGeneration
 {
 public:
-    void SetForEachBlock(int xmin,int ymin,int zmin, int xmax,int ymax, int zmax,Chunk chnk, Blocks::BlockTypes type)
+    void SetForEachBlock(int xmin, int ymin, int zmin, int xmax, int ymax, int zmax, Chunk chnk, BlockTypes type)
     {
         for (int x = xmin; x <= xmax; x++)
         {
@@ -10,13 +10,13 @@ public:
             {
                 for (int z = zmin; z < zmax; z++)
                 {
-                    SetBlock(chnk.blocks[x][y][z],type);
+                    SetBlock(chnk.blocks[x][y][z], type);
                 }
             }
         }
     }
     void GenerateChunk(Chunk ch)
     {
-        SetForEachBlock(0,0,0,16,100,16,ch,Blocks::stone);
+        SetForEachBlock(0, 0, 0, 16, 100, 16, ch,BlockTypes::stone);
     }
 };

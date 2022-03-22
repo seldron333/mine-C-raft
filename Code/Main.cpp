@@ -1,4 +1,5 @@
-#include "./Headers/MainHeader.h"
+#include "./Headers/MainHeader.hpp"
+#include "./Graphics/GraphicsMain.cpp"
 
 int main()
 {
