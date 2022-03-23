@@ -1,6 +1,8 @@
 #define GL_GLEXT_PROTOTYPES
 
 #include "../Headers/GraphicsHeader.hpp"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -111,7 +113,7 @@ void StartGraphics()
 
     int location = glGetUniformLocation(shader, "u_Color");
     glUniform4f(location, 0.2f,0.3f,0.8f,1.0f);
-    BaseFunctions::Start();
+    // BaseFunctions::Start();
     while (!glfwWindowShouldClose(wd))
     {
         glClear(GL_COLOR_BUFFER_BIT);
