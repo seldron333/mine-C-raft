@@ -1,3 +1,4 @@
+namespace Blocks{class BlockParent; enum BlockTypes;};
 Blocks::BlockParent &Block(double x, short y, double z);
 void UnloadChunk(int x, int z);
 void UpdateBlock(int x, int y, int z);

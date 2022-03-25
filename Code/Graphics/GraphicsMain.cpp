@@ -1,6 +1,6 @@
-#define GL_GLEXT_PROTOTYPES
-
-#include <GraphicsHeader.hpp>
+#include "../Headers/GraphicsHeader.hpp"
+#include "../Headers/VertexBuffer.hpp"
+#include "../Headers/IndexBuffer.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -75,11 +75,9 @@ GLuint CreateShader(const string &vertexshader, const string &fragmentshader)
 
     return program;
 }
-
 void StartGraphics()
 {
     glfwInit();
-
     float positions[] =
         {
             -0.5, -0.5,
@@ -96,16 +94,10 @@ void StartGraphics()
     GLFWwindow *wd = glfwCreateWindow(800, 800, "mineCraft++", NULL, NULL);
     glfwMakeContextCurrent(wd);
     glfwSwapInterval(1);
-    GLuint buffer;
-    glGenBuffers(1, &buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+    VertexBuffer vb(positions);
+
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
-    GLuint indbuffobj;
-    glGenBuffers(1, &indbuffobj);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indbuffobj);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
     ShaderProgramSource source = ParseShader();
     GLuint shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
