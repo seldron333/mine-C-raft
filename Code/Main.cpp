@@ -1,7 +1,8 @@
-#include "./Graphics/GraphicsMain.cpp"
+#include <AllFiles.hpp>
 
 int main()
 {
-    StartGraphics();
+    //StartGraphics();
+    Start();
     return 0;
 }

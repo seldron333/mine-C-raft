@@ -1,6 +1,5 @@
-class Entities
+namespace Entities
 {
-public:
     enum EntityTypes
     {
         cow,
@@ -34,5 +33,4 @@ public:
             this->entity_id = pig;
         }
     };
-    
 };

@@ -1,12 +1,13 @@
-#include "./Headers/MainHeader.hpp"
+#include <json.hpp>
+#include <iostream>
+#include <fstream>
+#include <GeneralHeader.hpp>
+#include <StaticHeader.hpp>
 using namespace std;
 
 nlohmann::json Settings;
 class Chunk;
 map<pair<int, int>, Chunk> Chunks;
-
-template <typename T>
-void log(T tx) { cout << tx << endl; }
 
 class Chunk
 {
@@ -53,6 +54,10 @@ void SetBlock(Blocks::BlockParent& bl, Blocks::BlockTypes type)
 {
     bl.block_id = type;
 }
+void SetBlock(double x, short y, double z, Blocks::BlockTypes type)
+{
+    Block(x,y,z).block_id = type;
+}
 void UpdateAdjacentBlocks(int x, int y, int z)
 {
     UpdateBlock(x, y, z);
@@ -63,16 +68,8 @@ void UpdateAdjacentBlocks(int x, int y, int z)
     UpdateBlock(x, y, z - 1);
     UpdateBlock(x, y, z + 1);
 }
-class BaseFunctions
+void Start()
 {
-private:
-    BaseFunctions()
-    {
-    }
-public:
-    static void Start()
-    {
-        InitializeJson();
-        Chunk(1,1);
-    }
-};
+    InitializeJson();
+    Block(3,2,2).block_id = Blocks::air;
+}

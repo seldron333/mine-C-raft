@@ -17,10 +17,12 @@
             "type": "shell",
             "command": "g++-11",
             "args": [
-                "./Code/Main.cpp",
+                
+                "${workspaceFolder}/Code/Main.cpp",
+                "-I${workspaceFolder}/Code",
+                "-I${workspaceFolder}/Code/Headers",
                 "-lGL",
                 "-lglfw",
-                "${workspaceFolder}/Code/Main.cpp",
                 "-o",
                 "${workspaceFolder}/minecrafttestcompiled"
             ]

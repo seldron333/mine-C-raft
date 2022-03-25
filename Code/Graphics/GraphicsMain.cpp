@@ -1,6 +1,6 @@
 #define GL_GLEXT_PROTOTYPES
 
-#include "../Headers/GraphicsHeader.hpp"
+#include <GraphicsHeader.hpp>
 #include <fstream>
 #include <sstream>
 
@@ -93,7 +93,6 @@ void StartGraphics()
             0, 1, 2,
             2, 3, 0
         };
-
     GLFWwindow *wd = glfwCreateWindow(800, 800, "mineCraft++", NULL, NULL);
     glfwMakeContextCurrent(wd);
     glfwSwapInterval(1);

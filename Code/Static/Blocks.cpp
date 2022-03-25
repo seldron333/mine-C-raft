@@ -1,6 +1,5 @@
-class Blocks
+namespace Blocks
 {
-public:
     enum BlockTypes : short
     {
         air,
