@@ -10,17 +10,21 @@
             ],
             "problemMatcher": [
                 "$gcc"
-            ]
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "Compile minecraft",
             "type": "shell",
             "command": "g++-11",
             "args": [
-                
                 "${workspaceFolder}/Code/Main.cpp",
                 "-I${workspaceFolder}/Code",
                 "-I${workspaceFolder}/Code/Headers",
+                "-I${workspaceFolder}/Code/Static",
                 "-lGL",
                 "-lglfw",
                 "-o",

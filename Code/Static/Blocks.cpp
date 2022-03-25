@@ -1,13 +1,6 @@
+#include <IdEnums.cpp>
 namespace Blocks
 {
-    enum BlockTypes : short
-    {
-        air,
-        grass,
-        dirt,
-        stone,
-        water
-    };
     class BlockParent
     {
     public:

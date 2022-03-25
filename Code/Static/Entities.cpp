@@ -1,11 +1,6 @@
+#include <IdEnums.cpp>
 namespace Entities
 {
-    enum EntityTypes
-    {
-        cow,
-        chicken,
-        pig
-    };
     class EntityParent
     {
     public:

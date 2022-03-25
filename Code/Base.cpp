@@ -70,7 +70,5 @@ void UpdateAdjacentBlocks(int x, int y, int z)
 }
 void Start()
 {
-    SetBlock(3,1,2,Blocks::air);
     InitializeJson();
-    Block(3,2,2).block_id = Blocks::air;
 }

@@ -1,6 +1,7 @@
-#include "../Headers/GraphicsHeader.hpp"
-#include "../Headers/VertexBuffer.hpp"
-#include "../Headers/IndexBuffer.hpp"
+#include <GeneralHeader.hpp>
+#include <GraphicsHeader.hpp>
+#include <VertexBuffer.hpp>
+#include <IndexBuffer.hpp>
 #include <fstream>
 #include <sstream>
 
@@ -51,11 +52,7 @@ GLuint Compileshader(GLuint type, const string &source)
     glGetShaderiv(id, GL_COMPILE_STATUS, &res);
     if (res == GL_FALSE)
     {
-        int length;
-        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-        char message[length];
-        glGetShaderInfoLog(id, length, &length, message);
-        cout << "failed to compile shader: " << message << endl;
+        log("error compiling shader");
         glDeleteShader(id);
         return 0;
     }
@@ -94,10 +91,12 @@ void StartGraphics()
     GLFWwindow *wd = glfwCreateWindow(800, 800, "mineCraft++", NULL, NULL);
     glfwMakeContextCurrent(wd);
     glfwSwapInterval(1);
-    VertexBuffer vb(positions);
+    VertexBuffer vb(positions, 4*2*sizeof(float));
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    IndexBuffer ib(Indices,6);
+
     ShaderProgramSource source = ParseShader();
     GLuint shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);

@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/Code",
-                "${workspaceFolder}/Code/Headers"
+                "${workspaceFolder}/Code/Headers",
+                "${workspaceFolder}/Code/Static"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++-11",

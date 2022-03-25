@@ -1,21 +1,27 @@
-#include "../Headers/VertexBuffer.hpp"
+#include <GraphicsHeader.hpp>
 
-VertexBuffer::VertexBuffer(const void* data)
+class VertexBuffer
 {
-    glGenBuffers(1, &rendererid);
-    glBindBuffer(GL_ARRAY_BUFFER, rendererid);
-    std::cout<<sizeof(data);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW);
-}
-VertexBuffer::~VertexBuffer()
-{
-    glDeleteBuffers(1, &rendererid);
-}
-void VertexBuffer::Bind()
-{
-    glBindBuffer(GL_ARRAY_BUFFER, rendererid);
-}
-void VertexBuffer::UnBind()
-{
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
+private:
+    GLuint rendererid;
+
+public:
+    VertexBuffer(const void *data, GLuint size)
+    {
+        glGenBuffers(1, &rendererid);
+        glBindBuffer(GL_ARRAY_BUFFER, rendererid);
+        glBufferData(GL_ARRAY_BUFFER, 4 * 2 * sizeof(float), data, GL_STATIC_DRAW);
+    }
+    ~VertexBuffer()
+    {
+        glDeleteBuffers(1, &rendererid);
+    }
+    void Bind()
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, rendererid);
+    }
+    void UnBind()
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+    }
+};
