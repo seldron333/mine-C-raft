@@ -2,6 +2,7 @@
 
 int main()
 {
+    Commence();
     Start();
     return 0;
 }

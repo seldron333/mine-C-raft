@@ -6,7 +6,13 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/Code",
                 "${workspaceFolder}/Code/Headers",
-                "${workspaceFolder}/Code/Static"
+                "${workspaceFolder}/Code/Static",
+                "${workspaceFolder}/Code/Graphics",
+                
+                "/usr/local/include/OGRE",
+                "/usr/local/include/OGRE/Bites",
+                "/usr/local/include/OGRE/RTShaderSystem",
+                "/usr/local/include/OGRE/Overlay"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++-11",

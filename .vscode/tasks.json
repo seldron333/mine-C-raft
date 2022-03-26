@@ -25,6 +25,17 @@
                 "-I${workspaceFolder}/Code",
                 "-I${workspaceFolder}/Code/Headers",
                 "-I${workspaceFolder}/Code/Static",
+                "-I${workspaceFolder}/Code/Graphics",
+
+                "-I/usr/local/include/OGRE",
+                "-I/usr/local/include/OGRE/Bites",
+                "-I/usr/local/include/OGRE/RTShaderSystem",
+                "-I/usr/local/include/OGRE/Overlay",
+
+                "/usr/local/lib/libOgreBites.so",
+                "/usr/local/lib/libOgreMain.so",
+                "/usr/local/lib/libOgreRTShaderSystem.so",
+                
                 "-o",
                 "${workspaceFolder}/minecrafttestcompiled"
             ]
