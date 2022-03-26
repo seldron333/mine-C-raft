@@ -2,7 +2,6 @@
 
 int main()
 {
-    StartGraphics();
     Start();
     return 0;
 }
