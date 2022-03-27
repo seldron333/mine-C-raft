@@ -2,7 +2,7 @@
 
 int main()
 {
-    Commence();
+    StartGraphics();
     Start();
     return 0;
 }

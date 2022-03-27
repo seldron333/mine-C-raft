@@ -19,7 +19,7 @@
         {
             "label": "Compile minecraft",
             "type": "shell",
-            "command": "g++-11",
+            "command": "g++",
             "args": [
                 "${workspaceFolder}/Code/Main.cpp",
                 "-I${workspaceFolder}/Code",
@@ -37,13 +37,13 @@
                 "/usr/local/lib/libOgreRTShaderSystem.so",
                 
                 "-o",
-                "${workspaceFolder}/minecrafttestcompiled"
+                "${workspaceFolder}/minecraftcompiled"
             ]
         },
         {
             "label": "Run minecraft",
             "type": "shell",
-            "command": "${workspaceFolder}/minecrafttestcompiled"
+            "command": "${workspaceFolder}/minecraftcompiled"
         }
     ]
 }
