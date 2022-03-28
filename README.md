@@ -7,4 +7,4 @@ Dependencies:
 - Ogre3d
 - g++
 - Python
-- Nlohmann json (in any of the g++ include directories)
+- Nlohmann json (single include)
