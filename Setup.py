@@ -32,6 +32,7 @@ if platform.system() == "Windows":
     apend(".exe")
     for i in range(len(argslist)):
         argslist[i] = argslist[i].replace("/usr/local/include/","C:\\MinGW\\include\\")
+        argslist[i] = argslist[i].replace("/usr/include/","C:\\MinGW\\include\\")
         argslist[i] = argslist[i].replace("/usr/local/lib/","C:\\MinGW\\lib\\")
         argslist[i] = argslist[i].replace("/","\\")
 for i in argslist:

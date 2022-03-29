@@ -12,7 +12,9 @@
                 "/usr/local/include/OGRE",
                 "/usr/local/include/OGRE/Bites",
                 "/usr/local/include/OGRE/RTShaderSystem",
-                "/usr/local/include/OGRE/Overlay"
+                "/usr/local/include/OGRE/Overlay",
+
+                "/usr/include/nlohmann"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++-11",

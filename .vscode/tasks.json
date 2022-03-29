@@ -35,6 +35,8 @@
                 "/usr/local/lib/libOgreBites.so",
                 "/usr/local/lib/libOgreMain.so",
                 "/usr/local/lib/libOgreRTShaderSystem.so",
+
+                "-I/usr/include/nlohmann",
                 
                 "-o",
                 "${workspaceFolder}/minecraftcompiled"
