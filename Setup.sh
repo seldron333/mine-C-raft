@@ -21,7 +21,13 @@ cd build
 printf "${green}Making cmake Ogre3d${normal}\n"
 cmake ..
 printf "${green}Building Ogre3d${normal}\n"
-make -j 50
+make -j 25
 printf "${green}Installing Ogre3d${normal}\n"
 sudo make install
-sudo rm -rf ../../ogre
+cd ../../
+sudo rm -rf ogre
+printf "${green}Creating Project${normal}\n"
+mkdir build
+cd build
+cmake ..
+make
