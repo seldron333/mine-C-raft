@@ -6,5 +6,5 @@ To compile make sure you have the dependencies first and run Setup.py, the file 
 Dependencies:
 - Ogre3d
 - g++
-- Python
 - Nlohmann json
+- Cmake
