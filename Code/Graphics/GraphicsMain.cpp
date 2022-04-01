@@ -1,48 +1,80 @@
 #include <Ogre.h>
 #include <OgreApplicationContext.h>
 #include <iostream>
-class App : public OgreBites::ApplicationContext, public OgreBites::InputListener
+using namespace Ogre;
+using namespace OgreBites;
+
+class App : public ApplicationContext, public InputListener
 {
 public:
-    App() : OgreBites::ApplicationContext("minecraft")
+    SceneNode* cm;
+    App() : ApplicationContext("minecraft")
     {
     }
-    bool keyPressed(const OgreBites::KeyboardEvent& evt)
-    {
-        if (evt.keysym.sym == OgreBites::SDLK_ESCAPE)
+    bool keyPressed(const KeyboardEvent& evt)
+    {        
+        cm->setFixedYawAxis(true);
+        if (evt.keysym.sym == SDLK_DOWN)
         {
-            getRoot()->queueEndRendering();
+            cm->translate(Vector3(0,0,1));
+        }
+        if (evt.keysym.sym == SDLK_UP)
+        {
+            cm->translate(Vector3(0,0,-1));
+        }
+        if (evt.keysym.sym == SDLK_LEFT)
+        {
+            cm->translate(Vector3(-1,0,0));
+        }
+        if (evt.keysym.sym == SDLK_RIGHT)
+        {
+            cm->translate(Vector3(1,0,0));
+        }
+        if (evt.keysym.sym == SDLK_LSHIFT)
+        {
+            cm->translate(Vector3(0,-1,0));
+        }
+        if (evt.keysym.sym == SDLK_SPACE)
+        {
+            cm->translate(Vector3(0,1,0));
         }
         return true;
     }
     void setup()
     {
-        OgreBites::ApplicationContext::setup();
+        ApplicationContext::setup();
         addInputListener(this);
-        Ogre::Root* root = getRoot();
-        Ogre::SceneManager* scenemng = root->createSceneManager();
-        Ogre::RTShader::ShaderGenerator* shadergen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+        Root* root = getRoot();
+        SceneManager* scenemng = root->createSceneManager();
+        RTShader::ShaderGenerator* shadergen = RTShader::ShaderGenerator::getSingletonPtr();
         shadergen->addSceneManager(scenemng);
 
-        Ogre::Light* light = scenemng->createLight("MainLight");
-        Ogre::SceneNode* lightNode = scenemng->getRootSceneNode()->createChildSceneNode();
-        lightNode->setPosition(0, 10, 15);
+        scenemng->setAmbientLight(ColourValue(0.5,0.5,0.5));
+        Light* light = scenemng->createLight("MainLight");
+        SceneNode* lightNode = scenemng->getRootSceneNode()->createChildSceneNode();
         lightNode->attachObject(light);
+        lightNode->setPosition(70, 80, 50);
 
-        Ogre::SceneNode* camNode = scenemng->getRootSceneNode()->createChildSceneNode();
+
+        SceneNode* camNode = scenemng->getRootSceneNode()->createChildSceneNode();
         camNode->setPosition(0, 0, 15);
-        camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
+        camNode->lookAt(Vector3(0, 0, -1), Node::TS_PARENT);
+        cm = camNode;
 
-        Ogre::Camera* cam = scenemng->createCamera("myCam");
-        cam->setNearClipDistance(5);
+        Camera* cam = scenemng->createCamera("myCam");
+        cam->setNearClipDistance(0.1);
         cam->setAutoAspectRatio(true);
         camNode->attachObject(cam);
 
         getRenderWindow()->addViewport(cam);
 
-        Ogre::Entity* ent = scenemng->createEntity("Sinbad.mesh");
-        Ogre::SceneNode* node = scenemng->getRootSceneNode()->createChildSceneNode();
+        
+        Entity* ent = scenemng->createEntity(SceneManager::PrefabType::PT_CUBE);
+        ent->setMaterialName("Examples/BumpyMetal");
+        SceneNode* node = scenemng->getRootSceneNode()->createChildSceneNode();
         node->attachObject(ent);
+        node->setScale(Vector3(0.01,0.01,0.01));
+        node->setPosition(Vector3(0,0.5,0));
     }
 };
 int main()

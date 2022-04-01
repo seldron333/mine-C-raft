@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.23.0)
 project(Minecraft)
 add_executable(${PROJECT_NAME} Code/Graphics/GraphicsMain.cpp)
 
@@ -32,27 +32,22 @@ endif(UNIX)
 
 
 if(WIN32) #Same but windows
-    if(MINGW)
-        set(incl C:\\MinGW\\include)
-        set(libs C:\\MinGW\\lib)
-        include_directories(
-            ${incl}\OGRE
-            ${incl}\OGRE\Bites
-            ${incl}\OGRE\RTShaderSystem
-            ${incl}\OGRE\Overlay
-
-            ${libs}\libOgreBites.so
-            ${libs}\libOgreMain.so
-            ${libs}\libOgreRTShaderSystem.so
-        )
-        include_directories(
-            ${incl}\nlohmann
-        )
-        target_link_libraries(
-            Minecraft
-            ${locL}/libOgreBites.so 
-            ${locL}/libOgreMain.so
-            ${locL}/libOgreRTShaderSystem.so
-        )
-    endif(MINGW)
+    set(incl C:/MinGW/include)
+    set(libs C:/MinGW/lib)
+    set(bin C:/MinGW/bin)
+    include_directories(
+        ${incl}/OGRE
+        ${incl}/OGRE/Bites
+        ${incl}/OGRE/RTShaderSystem
+        ${incl}/OGRE/Overlay
+    )
+    include_directories(
+        ${incl}/nlohmann
+    )
+    target_link_libraries(
+        Minecraft
+        ${libs}/OgreBites.lib 
+        ${libs}/OgreMain.lib
+        ${libs}/OgreRTShaderSystem.lib
+    )
 endif(WIN32)
