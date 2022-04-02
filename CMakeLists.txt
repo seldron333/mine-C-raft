@@ -11,6 +11,7 @@ set( #local include cpp files
     Code/Debug.cpp
     Code/World.cpp
     Code/GraphicsMain.cpp
+    Code/GraphicsWorldGeneration.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SourceFiles})

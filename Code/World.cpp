@@ -1,6 +1,5 @@
 #include <Debug.hpp>
 #include <Enums.hpp>
-#include <iostream>
 #include <map>
 
 class ChunkClass;
@@ -12,9 +11,14 @@ namespace BlockClasses
     class Block // Block class
     {
     public:
-        const BlockIds Id = air;
+        static BlockIds Id;
     };
-
+    class Dirt : public Block
+    {
+        Dirt() //: Id()
+        {
+        }
+    };
 };
 
 namespace EntityClasses // Entity class
@@ -22,6 +26,7 @@ namespace EntityClasses // Entity class
 
     class Entity
     {
+        
     };
 
 };

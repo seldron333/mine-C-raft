@@ -1,6 +1,57 @@
 # mine-C-raft
 A minecraft clone in c++ (Currently useless)
 
+## Dependencies:
+- g++ 11
+- Ogre3d
+- Nlohmann json
+- Cmake 3.23.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Old Description, doesn't work
+
 If you are on **Linux** run `Setup.sh`, it will configure everything for you, then execute the `Minecraft` file in the `build` directory
 
 If you are on **Windows**:
@@ -24,4 +75,4 @@ If you are on **Windows**:
 
 5. Select open project in Cmake and it will take you to Visual Studio, there make sure you have selected `Release` in the top, right click `ALL_BUILD` and select `build`
 
-6. After that there will be an executable at the `Release` folder in the build directory that you decided
+6. After that there will be an executable at the `Release` folder in the build directory that you decided-->
