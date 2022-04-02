@@ -51,7 +51,30 @@
 			"variant": "cpp",
 			"thread": "cpp",
 			"ios": "cpp",
-			"condition_variable": "cpp"
+			"condition_variable": "cpp",
+			"cctype": "cpp",
+			"clocale": "cpp",
+			"cstdarg": "cpp",
+			"cstddef": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"cstring": "cpp",
+			"ctime": "cpp",
+			"cwchar": "cpp",
+			"cwctype": "cpp",
+			"cstdint": "cpp",
+			"deque": "cpp",
+			"list": "cpp",
+			"map": "cpp",
+			"set": "cpp",
+			"vector": "cpp",
+			"iterator": "cpp",
+			"initializer_list": "cpp",
+			"iomanip": "cpp",
+			"numbers": "cpp",
+			"semaphore": "cpp",
+			"stdexcept": "cpp",
+			"cinttypes": "cpp"
 		}
 	}
 }

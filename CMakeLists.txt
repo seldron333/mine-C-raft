@@ -1,13 +1,19 @@
 cmake_minimum_required(VERSION 3.23.0)
 project(Minecraft)
-add_executable(${PROJECT_NAME} Code/Graphics/GraphicsMain.cpp)
-
 
 include_directories( #Local include directories
-    Code/Headers 
-    Code/Graphics
-    Code
+Code/Headers
+Code
 )
+
+set( #local include cpp files
+    SourceFiles
+    Code/Debug.cpp
+    Code/World.cpp
+    Code/GraphicsMain.cpp
+)
+
+add_executable(${PROJECT_NAME} ${SourceFiles})
 
 if(UNIX)
     set(locI /usr/local/include)

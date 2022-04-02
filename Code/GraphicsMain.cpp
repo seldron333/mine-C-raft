@@ -1,6 +1,8 @@
-#include <Ogre.h>
 #include <OgreApplicationContext.h>
+#include <Ogre.h>
 #include <iostream>
+#include <World.hpp>
+#include <Enums.hpp>
 using namespace Ogre;
 using namespace OgreBites;
 
@@ -37,6 +39,7 @@ public:
         if (evt.keysym.sym == SDLK_SPACE)
         {
             cm->translate(Vector3(0,1,0));
+            Test();
         }
         return true;
     }
