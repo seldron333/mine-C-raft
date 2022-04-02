@@ -50,6 +50,10 @@ A minecraft clone in c++ (Currently useless)
 
 
 
+
+
+
+
 <!-- Old Description, doesn't work
 
 If you are on **Linux** run `Setup.sh`, it will configure everything for you, then execute the `Minecraft` file in the `build` directory
@@ -75,4 +79,46 @@ If you are on **Windows**:
 
 5. Select open project in Cmake and it will take you to Visual Studio, there make sure you have selected `Release` in the top, right click `ALL_BUILD` and select `build`
 
-6. After that there will be an executable at the `Release` folder in the build directory that you decided-->
+6. After that there will be an executable at the `Release` folder in the build directory that you decided
+
+
+
+Old Setup.sh
+
+green='\033[1;33m'
+normal='\033[0m'
+printf "${green}Updating repositories${normal}\n"
+sudo apt update -qq
+printf "${green}Installing g++${normal}\n"
+sudo apt install -qq g++
+printf "${green}Installing cmake${normal}\n"
+sudo apt install -qq cmake
+printf "${green}Installing git${normal}\n"
+sudo apt install -qq git
+printf "${green}Installing nlohmann json from github${normal}\n"
+sudo git clone https://github.com/nlohmann/json.git
+sudo rm -rf /usr/include/nlohmann
+sudo mv ./json/include/nlohmann /usr/include
+sudo rm -rf ./json
+printf "${green}Cloning Ogre3d${normal}\n"
+git clone https://github.com/OGRECave/ogre.git
+cd ogre
+mkdir build
+cd build
+printf "${green}Making cmake Ogre3d${normal}\n"
+cmake ..
+printf "${green}Building Ogre3d${normal}\n"
+make -j 25
+printf "${green}Installing Ogre3d${normal}\n"
+sudo make install
+cd ../../
+sudo rm -rf ogre
+printf "${green}Creating Project${normal}\n"
+mkdir build
+cd build
+cmake ..
+make
+
+
+
+-->
