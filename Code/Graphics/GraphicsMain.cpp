@@ -50,23 +50,15 @@ public:
         shadergen->addSceneManager(scenemng);
 
         scenemng->setAmbientLight(ColourValue(0.5,0.5,0.5));
-        Light* light = scenemng->createLight("MainLight");
-        SceneNode* lightNode = scenemng->getRootSceneNode()->createChildSceneNode();
-        lightNode->attachObject(light);
-        lightNode->setPosition(70, 80, 50);
-
-
         SceneNode* camNode = scenemng->getRootSceneNode()->createChildSceneNode();
-        camNode->setPosition(0, 0, 15);
-        camNode->lookAt(Vector3(0, 0, -1), Node::TS_PARENT);
         cm = camNode;
 
         Camera* cam = scenemng->createCamera("myCam");
-        cam->setNearClipDistance(0.1);
+        cam->setNearClipDistance(0.01);
         cam->setAutoAspectRatio(true);
         camNode->attachObject(cam);
 
-        getRenderWindow()->addViewport(cam);
+        getRenderWindow()->addViewport(cam)->setBackgroundColour(ColourValue(float(135)/255, float(206)/255, float(235)/255));;
 
         
         Entity* ent = scenemng->createEntity(SceneManager::PrefabType::PT_CUBE);
@@ -74,7 +66,7 @@ public:
         SceneNode* node = scenemng->getRootSceneNode()->createChildSceneNode();
         node->attachObject(ent);
         node->setScale(Vector3(0.01,0.01,0.01));
-        node->setPosition(Vector3(0,0.5,0));
+        node->setPosition(Vector3(0,0,0.5));
     }
 };
 int main()

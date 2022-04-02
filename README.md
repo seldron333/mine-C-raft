@@ -1,5 +1,5 @@
 # mine-C-raft
-A minecraft replica in c++ (Currently useless)
+A minecraft clone in c++ (Currently useless)
 
 If you are on **Linux** run `Setup.sh`, it will configure everything for you, then execute the `Minecraft` file in the `build` directory
 
