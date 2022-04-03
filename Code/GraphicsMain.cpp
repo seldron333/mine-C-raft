@@ -7,39 +7,36 @@ using namespace OgreBites;
 class App : public ApplicationContext, public InputListener
 {
 public:
-    SceneNode* cm;
+    Root* root;
+    SceneManager* mng;
+    Camera* cam;
+    SceneNode* camN;
     App() : ApplicationContext("minecraft")
     {
     }
     void setup()
     {
+        // Immutable : setup
+        #pragma region
         ApplicationContext::setup();
-        getRoot()->restoreConfig();
+        root = getRoot();
+        mng = root->createSceneManager();
         addInputListener(this);
-        Root* root = getRoot();
-        SceneManager* scenemng = root->createSceneManager();
-        RTShader::ShaderGenerator* shadergen = RTShader::ShaderGenerator::getSingletonPtr();
-        shadergen->addSceneManager(scenemng);
+        RTShader::ShaderGenerator::getSingletonPtr()->addSceneManager(mng);
+        #pragma endregion
 
-        scenemng->setAmbientLight(ColourValue(0.5,0.5,0.5));
-        SceneNode* camNode = scenemng->getRootSceneNode()->createChildSceneNode();
-        cm = camNode;
-
-        Camera* cam = scenemng->createCamera("myCam");
+        // Immutable : Camera and lighting
+        #pragma region 
+        mng->setAmbientLight(ColourValue(0.5,0.5,0.5));
+        cam = mng->createCamera("FirstPersonCam");
         cam->setNearClipDistance(0.01);
         cam->setAutoAspectRatio(true);
-        camNode->attachObject(cam);
-
+        camN = mng->getRootSceneNode()->createChildSceneNode();
+        camN->attachObject(cam);
         getRenderWindow()->addViewport(cam)->setBackgroundColour(ColourValue(float(135)/255, float(206)/255, float(235)/255));;
+        #pragma endregion
 
-        
-        Entity* ent = scenemng->createEntity(SceneManager::PrefabType::PT_CUBE);
-        ent->setMaterialName("Examples/BumpyMetal");
-        SceneNode* node = scenemng->getRootSceneNode()->createChildSceneNode();
-        node->attachObject(ent);
-        node->setScale(Vector3(0.01,0.01,0.01));
-        node->setPosition(Vector3(0,0,0.5));
-        root->showConfigDialog(NULL);
+        SetupGraphicsWorldGeneration(this);
     }
 };
 int main()
