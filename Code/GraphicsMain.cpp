@@ -39,7 +39,7 @@ public:
         SetupGraphicsWorldGeneration(this);
     }
 };
-int main()
+int maidens()
 {
     App mc;
     mc.initApp();
