@@ -1,5 +1,6 @@
 #include <OgreApplicationContext.h>
 #include <Ogre.h>
+#include <Debug.hpp>
 #include <GraphicsWorldGeneration.hpp>
 using namespace Ogre;
 using namespace OgreBites;
@@ -35,11 +36,14 @@ public:
         camN->attachObject(cam);
         getRenderWindow()->addViewport(cam)->setBackgroundColour(ColourValue(float(135)/255, float(206)/255, float(235)/255));;
         #pragma endregion
+        Entity* lol;
+        lol = mng->createEntity(SceneManager::PrefabType::PT_CUBE);
+    Debug::Log("njuindsndvbjsvdniiidvdhsbhidbi");
 
         SetupGraphicsWorldGeneration(this);
     }
 };
-int maidens()
+int main()
 {
     App mc;
     mc.initApp();

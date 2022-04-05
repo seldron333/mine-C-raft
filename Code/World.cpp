@@ -1,13 +1,12 @@
-#include <iostream>
+#include <Debug.hpp>
 #include <Enums.hpp>
-template<BlockIds Id>
+#define CreateBlock(Name) class Name : public BlockClass {}
 class BlockClass
 {
     public:
-    const static BlockIds id = Id;
-    const static 
+    static BlockIds id;
 };
-int main()
-{
-    
-}
+
+CreateBlock(Stone);
+CreateBlock(Dirt);
+CreateBlock(Grass);
