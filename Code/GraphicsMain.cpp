@@ -7,12 +7,13 @@ using namespace OgreBites;
 
 class App : public ApplicationContext, public InputListener
 {
-public:
+private:
     Root* root;
     SceneManager* mng;
     Camera* cam;
     SceneNode* camN;
-    Entity* BlockEntity;
+    Entity* BaseBlockEntity;
+public:
     App() : ApplicationContext("minecraft")
     {
     }
@@ -35,20 +36,20 @@ public:
         cam->setAutoAspectRatio(true);
         camN = mng->getRootSceneNode()->createChildSceneNode();
         camN->attachObject(cam);
-        getRenderWindow()->addViewport(cam)->setBackgroundColour(ColourValue(float(135)/255, float(206)/255, float(235)/255));;
+        getRenderWindow()->addViewport(cam)->setBackgroundColour(ColourValue(float(135)/255, float(206)/255, float(235)/255));
         #pragma endregion
 
         #pragma region 
-        BlockEntity = mng->createEntity(SceneManager::PrefabType::PT_CUBE);
-        BlockEntity->setMaterialName("Examples/Rockwall");
+        BaseBlockEntity = mng->createEntity(SceneManager::PrefabType::PT_CUBE);
         camN->setPosition(Vector3(0,105,0));
         #pragma endregion
     }
-    #include <string>
-    void SetBlock(int x, int y, int z)//, BlockClass BL)
+
+    void SetBlock(int x, int y, int z), BlockClass BL)
     {
         SceneNode* node = mng->getRootSceneNode()->createChildSceneNode();
-        node->attachObject(BlockEntity->clone(std::to_string(random()*random())));
+        if(mng->getEntity)
+        node->attachObject();
         node->setScale(Vector3(0.01,0.01,0.01));
         node->setPosition(Vector3(x,y,z));
         Debug::Log("placed");
