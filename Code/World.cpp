@@ -1,21 +1,13 @@
 #include <Ogre.h>
 #include <Debug.hpp>
 #include <Enums.hpp>
-#define CreateBlock(Name) class Name : public BlockClass
-class BlockClass
+#include <WorldGeneration.hpp>
+#include <World.hpp>
+#define CreateBlockClass(Name) class Name : public BlockClass
+Chunk::Chunk(int x, int y) : x(x), y(y)
 {
-public:
-    static BlockIds id;
-    Ogre::SceneNode* Node;
-private:
-    BlockClass()
-    {}
-};
-class Chunk
-{
-public:
-    BlockClass Blocks[16][256][16];
-};
-CreateBlock(Stone){};
-CreateBlock(Dirt){};
-CreateBlock(Grass){};
+    GenerateChunk(*this);
+}
+CreateBlockClass(Stone){};
+CreateBlockClass(Dirt){};
+CreateBlockClass(Grass){};
