@@ -8,7 +8,7 @@ using namespace OgreBites;
 
 void App::setup()
 {
-// Immutable : Setup
+// Setup
 #pragma region
     ApplicationContext::setup();
     root = getRoot();
@@ -17,7 +17,7 @@ void App::setup()
     RTShader::ShaderGenerator::getSingletonPtr()->addSceneManager(mng);
 #pragma endregion
 
-// Immutable : Camera and lighting
+// Camera and lighting
 #pragma region
     mng->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
     cam = mng->createCamera("FirstPersonCam");
@@ -29,7 +29,7 @@ void App::setup()
     camN->setPosition(Vector3(0, 105, 0));
 #pragma endregion
 
-// Immutable : Mesh and rendering
+// Mesh and rendering
 #pragma region
     BaseBlockEntity = mng->createEntity(SceneManager::PrefabType::PT_CUBE);
 #pragma endregion
