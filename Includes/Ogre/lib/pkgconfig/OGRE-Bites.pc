@@ -1,0 +1,11 @@
+prefix=/home/seldron/Projects/mine-C-raft/Includes/Ogre
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: OGRE-Bites
+Description: Bites component for OGRE
+Version: 13.4.0
+Requires: OGRE = 13.4.0 , sdl2
+Libs: -L${libdir} -lOgreBites
+Cflags: -I${includedir}/OGRE/Bites -pthread

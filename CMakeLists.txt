@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.23.0)
 project(Minecraft)
 
-include(ExternalProject) 
-ExternalProject_Add(
-    OgreProject
-    GIT_REPOSITORY https://github.com/OGRECave/ogre.git
- )
+#include(ExternalProject) 
+#ExternalProject_Add(
+#    OgreProject
+#    GIT_REPOSITORY https://github.com/OGRECave/ogre.git
+# )
 include_directories( #Code include directories
     Code/Headers
     Code
@@ -13,6 +13,8 @@ include_directories( #Code include directories
 
 set( #Ogre include files
     OgreFiles
+    /home/seldron/Projects/mine-C-raft/Includes/Ogre/lib/libOgreMain.so
+    /home/seldron/Projects/mine-C-raft/Includes/Ogre/lib/libOgreBites.so
 )
 
 
@@ -25,8 +27,12 @@ set( #Code include cpp files
 )
 
 include_directories( #includes include directory
-    Includes/Ogre/OgreHeaders
-    Includes/Ogre/OgreSource
+    Includes/Ogre/include/OGRE/RTShaderSystem
+    Includes/Ogre/include/OGRE/Bites
+    Includes/Ogre/include/OGRE/Threading
+    Includes/Ogre/include/OGRE/
+    Includes/Ogre/lib
+    Includes/Ogre/share
     Includes/Nlohmann
 )
 

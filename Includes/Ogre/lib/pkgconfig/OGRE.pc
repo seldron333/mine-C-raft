@@ -1,0 +1,12 @@
+prefix=/home/seldron/Projects/mine-C-raft/Includes/Ogre
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+plugindir=${prefix}/
+
+Name: OGRE
+Description: Object-Oriented Graphics Rendering Engine
+Version: 13.4.0
+URL: http://www.ogre3d.org
+Libs: -L${libdir} -lOgreMain  -lpthread
+Cflags: -I${includedir}/OGRE -pthread
