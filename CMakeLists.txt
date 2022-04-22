@@ -49,6 +49,7 @@ set(
 
 include_directories( #Code include directories
     Code
+    Code/Headers
 )
 
 set( #Code include cpp files
@@ -62,9 +63,19 @@ set( #Code include cpp files
 include_directories( #includes include directory
     Includes
     Includes/include
+    Includes/include/OGRE
+    Includes/include/OGRE/Bites
+    Includes/include/OGRE/Overlay
+    Includes/include/OGRE/RTShaderSystem
+    Includes/include/OGRE/Threading
+)
+
+set(
+    OgreLibs
 )
 
 add_executable(
     ${PROJECT_NAME} 
     ${CodeFiles}
+    ${OgreLibs}
 )
