@@ -24,12 +24,23 @@ include_directories( #includes include directory
     Includes/include/OGRE/Threading
 )
 
-set(
-    OgreLibs
+link_directories(
+    Includes/lib/
+)
+
+link_libraries(
+    libOgreBites.so
+    libOgreMain.so
+    libOgreMeshLodGenerator.so
+    libOgreOverlay.so
+    libOgrePaging.so
+    libOgreProperty.so
+    libOgreRTShaderSystem.so
+    libOgreTerrain.so
+    libOgreVolume.so
 )
 
 add_executable(
     ${PROJECT_NAME} 
     ${CodeFiles}
-    ${OgreLibs}
 )

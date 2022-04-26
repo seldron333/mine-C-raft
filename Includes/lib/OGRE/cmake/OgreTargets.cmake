@@ -16,7 +16,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_targetsDefined)
 set(_targetsNotDefined)
 set(_expectedTargets)
-foreach(_expectedTarget OgreMain OgreBitesQt OgreBites OgreRTShaderSystem OgreOverlay)
+foreach(_expectedTarget OgreMain RenderSystem_GL RenderSystem_GL3Plus RenderSystem_GLES2 Plugin_OctreeSceneManager Plugin_BSPSceneManager Plugin_CgProgramManager Codec_EXR Codec_STBI Codec_FreeImage Plugin_ParticleFX Plugin_PCZSceneManager Plugin_OctreeZone Plugin_DotScene Codec_Assimp OgreBitesQt OgreBites OgrePaging OgreMeshLodGenerator OgreProperty OgreTerrain OgreRTShaderSystem OgreVolume OgreOverlay)
   list(APPEND _expectedTargets ${_expectedTarget})
   if(NOT TARGET ${_expectedTarget})
     list(APPEND _targetsNotDefined ${_expectedTarget})
@@ -58,6 +58,118 @@ set_target_properties(OgreMain PROPERTIES
   INTERFACE_LINK_LIBRARIES "pthread"
 )
 
+# Create imported target RenderSystem_GL
+add_library(RenderSystem_GL SHARED IMPORTED)
+
+set_target_properties(RenderSystem_GL PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/RenderSystems/GL;/usr/include"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target RenderSystem_GL3Plus
+add_library(RenderSystem_GL3Plus SHARED IMPORTED)
+
+set_target_properties(RenderSystem_GL3Plus PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/RenderSystems/GL3Plus;/usr/include"
+  INTERFACE_LINK_LIBRARIES "OgreMain;dl"
+)
+
+# Create imported target RenderSystem_GLES2
+add_library(RenderSystem_GLES2 SHARED IMPORTED)
+
+set_target_properties(RenderSystem_GLES2 PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/RenderSystems/GLES2"
+  INTERFACE_LINK_LIBRARIES "OgreMain;dl"
+)
+
+# Create imported target Plugin_OctreeSceneManager
+add_library(Plugin_OctreeSceneManager SHARED IMPORTED)
+
+set_target_properties(Plugin_OctreeSceneManager PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/OctreeSceneManager"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target Plugin_BSPSceneManager
+add_library(Plugin_BSPSceneManager SHARED IMPORTED)
+
+set_target_properties(Plugin_BSPSceneManager PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/BSPSceneManager"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target Plugin_CgProgramManager
+add_library(Plugin_CgProgramManager SHARED IMPORTED)
+
+set_target_properties(Plugin_CgProgramManager PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/CgProgramManager"
+  INTERFACE_LINK_LIBRARIES "OgreMain;/usr/lib/x86_64-linux-gnu/libCg.so"
+)
+
+# Create imported target Codec_EXR
+add_library(Codec_EXR SHARED IMPORTED)
+
+set_target_properties(Codec_EXR PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/EXRCodec"
+  INTERFACE_LINK_LIBRARIES "OgreMain;/usr/lib/x86_64-linux-gnu/libIlmImf.so;/usr/lib/x86_64-linux-gnu/libIlmThread.so;/usr/lib/x86_64-linux-gnu/libHalf.so;/usr/lib/x86_64-linux-gnu/libIex.so"
+)
+
+# Create imported target Codec_STBI
+add_library(Codec_STBI SHARED IMPORTED)
+
+set_target_properties(Codec_STBI PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/STBICodec"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target Codec_FreeImage
+add_library(Codec_FreeImage SHARED IMPORTED)
+
+set_target_properties(Codec_FreeImage PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/FreeImageCodec"
+  INTERFACE_LINK_LIBRARIES "OgreMain;/usr/lib/x86_64-linux-gnu/libfreeimage.so"
+)
+
+# Create imported target Plugin_ParticleFX
+add_library(Plugin_ParticleFX SHARED IMPORTED)
+
+set_target_properties(Plugin_ParticleFX PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/ParticleFX"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target Plugin_PCZSceneManager
+add_library(Plugin_PCZSceneManager SHARED IMPORTED)
+
+set_target_properties(Plugin_PCZSceneManager PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/PCZSceneManager"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target Plugin_OctreeZone
+add_library(Plugin_OctreeZone SHARED IMPORTED)
+
+set_target_properties(Plugin_OctreeZone PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/OctreeZone"
+  INTERFACE_LINK_LIBRARIES "OgreMain;Plugin_PCZSceneManager"
+)
+
+# Create imported target Plugin_DotScene
+add_library(Plugin_DotScene SHARED IMPORTED)
+
+set_target_properties(Plugin_DotScene PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/DotScene"
+  INTERFACE_LINK_LIBRARIES "OgreMain;OgreTerrain"
+)
+
+# Create imported target Codec_Assimp
+add_library(Codec_Assimp SHARED IMPORTED)
+
+set_target_properties(Codec_Assimp PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Plugins/Assimp"
+  INTERFACE_LINK_LIBRARIES "OgreMain;fix::assimp;OgreRTShaderSystem"
+)
+
 # Create imported target OgreBitesQt
 add_library(OgreBitesQt SHARED IMPORTED)
 
@@ -73,11 +185,51 @@ set_target_properties(OgreBites PROPERTIES
   INTERFACE_LINK_LIBRARIES "OgreMain;OgreOverlay;OgreRTShaderSystem"
 )
 
+# Create imported target OgrePaging
+add_library(OgrePaging SHARED IMPORTED)
+
+set_target_properties(OgrePaging PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Paging"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target OgreMeshLodGenerator
+add_library(OgreMeshLodGenerator SHARED IMPORTED)
+
+set_target_properties(OgreMeshLodGenerator PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/MeshLodGenerator"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target OgreProperty
+add_library(OgreProperty SHARED IMPORTED)
+
+set_target_properties(OgreProperty PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Property"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target OgreTerrain
+add_library(OgreTerrain SHARED IMPORTED)
+
+set_target_properties(OgreTerrain PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Terrain"
+  INTERFACE_LINK_LIBRARIES "OgreMain;OgreRTShaderSystem;OgrePaging"
+)
+
 # Create imported target OgreRTShaderSystem
 add_library(OgreRTShaderSystem SHARED IMPORTED)
 
 set_target_properties(OgreRTShaderSystem PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/RTShaderSystem"
+  INTERFACE_LINK_LIBRARIES "OgreMain"
+)
+
+# Create imported target OgreVolume
+add_library(OgreVolume SHARED IMPORTED)
+
+set_target_properties(OgreVolume PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/OGRE/Volume"
   INTERFACE_LINK_LIBRARIES "OgreMain"
 )
 
