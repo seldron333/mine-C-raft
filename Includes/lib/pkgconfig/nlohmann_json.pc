@@ -1,4 +1,0 @@
-Name: nlohmann_json
-Description: JSON for Modern C++
-Version: 3.10.5
-Cflags: -I/home/seldron/Projects/mine-C-raft/Includes/include
