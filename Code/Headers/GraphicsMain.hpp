@@ -17,5 +17,7 @@ public:
     {
     }
     void SetBlock(int x, int y, int z, BlockClass BL);
+    bool keyPressed(const KeyboardEvent& evt);
+    bool mouseMoved(const MouseMotionEvent& evt);
 };
 extern App mc;

@@ -6,6 +6,29 @@
 using namespace Ogre;
 using namespace OgreBites;
 
+float CameraSensibility=0.001;
+bool App::mouseMoved(const MouseMotionEvent& evt)
+{
+    App::camN->yaw(Radian(-evt.xrel*CameraSensibility));
+    App::camN->pitch(Radian(-evt.yrel*CameraSensibility));
+    return true;
+}
+bool App::keyPressed(const KeyboardEvent& evt)
+{
+    switch(evt.keysym.sym)
+    {
+        case 'w':
+            break;
+        case 's':
+            break;
+        case 'd':
+            break;
+        case 'a':
+            break;
+    }
+    return true;
+}
+
 void App::setup()
 {
 // Setup
