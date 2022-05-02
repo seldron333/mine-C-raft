@@ -12,6 +12,7 @@ set( #Code include cpp files
     Code/World.cpp
     Code/GraphicsMain.cpp
     Code/WorldGeneration.cpp
+    Code/Models.cpp
 )
 
 include_directories( #includes include directory

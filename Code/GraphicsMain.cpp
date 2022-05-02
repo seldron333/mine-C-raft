@@ -1,18 +1,20 @@
-#include <Bites/OgreApplicationContext.h>
+#include <OgreApplicationContext.h>
 #include <Ogre.h>
 #include <Debug.hpp>
 #include <World.hpp>
 #include <GraphicsMain.hpp>
+#include <Models.hpp>
 using namespace Ogre;
 using namespace OgreBites;
 
-float CameraSensibility=0.001;
+float CameraSensibility = 0.001;
 bool App::mouseMoved(const MouseMotionEvent& evt)
 {
-    camN->yaw(Radian(-evt.xrel*CameraSensibility));
-    camN->pitch(Radian(-evt.yrel*CameraSensibility));
+    camN->yaw(Radian(-evt.xrel*CameraSensibility),Node::TS_PARENT);
+    camN->pitch(Radian(-evt.yrel*CameraSensibility),Node::TS_LOCAL);
     return true;
 }
+
 bool App::keyPressed(const KeyboardEvent& evt)
 {
     switch(evt.keysym.sym)
@@ -28,6 +30,12 @@ bool App::keyPressed(const KeyboardEvent& evt)
             break;
         case 'a':
             camN->translate(-1,0,0,Node::TS_LOCAL);
+            break;
+        case '\e':
+            setWindowGrab(false);
+            break;
+        case 'l':
+            setWindowGrab(true);
             break;
     }
     return true;
@@ -63,21 +71,21 @@ void App::setup()
 
 // Mesh and rendering
 #pragma region
-    BaseBlockEntity = mng->createEntity(SceneManager::PrefabType::PT_CUBE);
+    Models::GenerateMeshes();
+    BaseBlockEntity = mng->createEntity("UpMesh");
 #pragma endregion
+    setWindowGrab(true);
 }
 
 void App::SetBlock(int x, int y, int z, BlockClass BL)
 {
     SceneNode *node = mng->getRootSceneNode()->createChildSceneNode();
-    // if(mng->getEntity)
-    node->attachObject(App::BaseBlockEntity->clone("Block ("+std::to_string(x)+","+std::to_string(y)+","+std::to_string(z)+")"));
-    node->setPosition(Vector3(x, y, z));
+    node->attachObject(BaseBlockEntity->clone("Block ("+std::to_string(x)+","+std::to_string(y)+","+std::to_string(z)+")"));
+    node->setPosition(x, y, z);
 }
 App mc;
 int main()
 {
-    BlockClass lol;
     mc.initApp();
     Chunk(3,2);
     mc.getRoot()->startRendering();
