@@ -10,4 +10,3 @@ enum EntityIds
 {
 
 };
-#define BlockClassesNames Stone, Dirt, Grass
