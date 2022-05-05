@@ -76,7 +76,7 @@ void App::setup()
     setWindowGrab(true);
 }
 
-void App::SetBlock(int x, int y, int z, BlockClass BL)
+void App::SetBlock(int x, int y, int z)
 {
     SceneNode* node = mng->getRootSceneNode()->createChildSceneNode();
     node->attachObject(BaseBlockEntity->clone("Block (" + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) + ")"));
@@ -86,7 +86,9 @@ App mc;
 int main()
 {
     mc.initApp();
-    Chunk(3, 2);
+    SceneNode* node = mc.mng->getRootSceneNode()->createChildSceneNode();
+    node->attachObject(mc.BaseBlockEntity->clone("gfhfdghgfdgfhdf"));
+    node->setPosition(0, 105, -5);
     mc.getRoot()->startRendering();
     mc.closeApp();
     return 0;

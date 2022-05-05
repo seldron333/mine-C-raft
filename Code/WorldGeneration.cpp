@@ -7,7 +7,7 @@ void GenerateChunk(Chunk &ch)
     {
         for (int k = -16; k < 16; k++)
         {
-            mc.SetBlock(i, 40, k, ch.Blocks[i][40][k]);
+            mc.SetBlock(i, 40, k);
         }
     }
 }
