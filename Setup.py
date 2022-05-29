@@ -1,38 +1,30 @@
 import os
 import shutil
+import zipfile
 
 maincwd = os.getcwd()
+if maincwd[-1] == '/': maincwd = maincwd[:-1]
 
 class program:
     name = ""
-    git = ""
     args = ""
-    def __init__(self, name, git, args):
+    def __init__(self, name, args):
         self.name = name
-        self.git = git
         self.args = args
     
 def install(p):
-    os.makedirs("build/ExternalProjects/"+p.name, exist_ok=True)
-    if len(os.listdir("build/ExternalProjects/"+p.name)) == 0:
-        os.system("git clone "+p.git+" build/ExternalProjects/"+p.name)
-    else:
-        output = input(p.name+" may already be downloaded, Redownload? (y/n): ")
-        if output == "y":
-            shutil.rmtree("build/ExternalProjects/"+p.name)
-            os.makedirs("build/ExternalProjects/"+p.name)
-            os.system("git clone "+p.git+" build/ExternalProjects/"+p.name)
-        elif output == "n": pass
-        else: 
-            print("Invalid input")
-            input("Press enter to close")
-            quit()
-    os.makedirs("build/ExternalProjects/"+p.name+"/build", exist_ok=True)
-    os.chdir("build/ExternalProjects/"+p.name+"/build")
+    os.makedirs("./build/ExternalProjects")
+    os.chdir("./build/ExternalProjects")
+    os.makedirs("./"+p.name+"/build")
+    zipfile.ZipFile(maincwd+'/Resources/Dependencies/'+p.name+".zip").extractall("./"+p.name)
+    os.chdir("./"+p.name+"/build")
     os.system('cmake -GNinja '+p.args+' ..')
     os.system('ninja')
     os.system('ninja install')
     os.chdir(maincwd)
-    
-install(program("Ogre","https://github.com/OGRECave/ogre.git", '-DCMAKE_INSTALL_PREFIX:PATH="'+maincwd+'/Includes" -DCMAKE_BUILD_TYPE:STRING="Release" -DOGRE_BUILD_SAMPLES:BOOL="0" -DOGRE_ASSERT_MODE:STRING="0" -DOGRE_BUILD_COMPONENT_PYTHON:BOOL="0" -DOGRE_INSTALL_DOCS:BOOL="0" -DOGRE_INSTALL_SAMPLES:BOOL="0" -DOGRE_BUILD_COMPONENT_CSHARP:BOOL="0"'))
-install(program("Json","https://github.com/nlohmann/json.git",'-DJSON_BuildTests:BOOL="0" -DJSON_ImplicitConversions:BOOL="0" -DJSON_Install:BOOL="1" -DCMAKE_INSTALL_PREFIX:PATH="'+maincwd+'/Includes" -DBUILD_TESTING:BOOL="0"'))
+
+shutil.rmtree('./build',ignore_errors=True)
+shutil.rmtree('./Includes',ignore_errors=True)
+os.makedirs("./Includes/include/nlohmann",exist_ok=True)
+shutil.copyfile("./Resources/Dependencies/json.hpp","./Includes/include/nlohmann/json.hpp")
+install(program("Ogre", '-DOGRE_INSTALL_DOCS:BOOL="0" -DOGRE_ASSERT_MODE:STRING="0" -DCMAKE_INSTALL_PREFIX:PATH="'+maincwd+'/Includes" -DOGRE_INSTALL_SAMPLES:BOOL="0" -DCMAKE_BUILD_TYPE:STRING="Release" -DOGRE_BUILD_SAMPLES:BOOL="0"'))

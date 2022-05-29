@@ -20,6 +20,6 @@ public:
     void SetBlock(int x, int y, int z);
     bool keyPressed(const KeyboardEvent& evt);
     bool mouseMoved(const MouseMotionEvent& evt);
-    void frameRendered(const FrameEvent& evt);
+    bool frameStarted(const FrameEvent& evt);
 };
 extern App mc;

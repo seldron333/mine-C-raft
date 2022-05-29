@@ -7,6 +7,8 @@
 using namespace Ogre;
 using namespace OgreBites;
 
+std::map<Keycode,bool> KeysPressed;
+
 float CameraSensibility = 0.001;
 bool App::mouseMoved(const MouseMotionEvent &evt)
 {
@@ -17,6 +19,9 @@ bool App::mouseMoved(const MouseMotionEvent &evt)
 
 bool App::keyPressed(const KeyboardEvent &evt)
 {
+    KeysPressed[evt.keysym.sym] = true;
+
+/*
     switch (evt.keysym.sym)
     {
     case 'w':
@@ -37,12 +42,14 @@ bool App::keyPressed(const KeyboardEvent &evt)
     case 'l':
         setWindowGrab(true);
         break;
-    }
+    }*/
     return true;
 }
 
-void App::frameRendered(const Ogre::FrameEvent &evt)
+bool App::frameStarted(const FrameEvent &evt)
 {
+    Debug::Log(evt.timeSinceLastFrame);
+    return true;
 }
 
 void App::setup()

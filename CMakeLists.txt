@@ -16,8 +16,7 @@ set( #Code include cpp files
 )
 
 include_directories( #includes include directory
-    Includes
-    Includes/include
+    Includes/include/nlohmann
     Includes/include/OGRE
     Includes/include/OGRE/Bites
     Includes/include/OGRE/Overlay
