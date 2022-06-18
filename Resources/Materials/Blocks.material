@@ -6,7 +6,7 @@ material dirt
         {
             texture_unit
             {
-                
+                texture dirt.png
             }
         }
     }

@@ -8,14 +8,22 @@ using namespace Ogre;
 using namespace OgreBites;
 
 std::map<Keycode,bool> KeysPressed;
-
 float CameraSensibility = 0.001;
+
+
+
+
+
 bool App::mouseMoved(const MouseMotionEvent &evt)
 {
     camN->yaw(Radian(-evt.xrel * CameraSensibility), Node::TS_PARENT);
     camN->pitch(Radian(-evt.yrel * CameraSensibility), Node::TS_LOCAL);
     return true;
 }
+
+
+
+
 
 bool App::keyPressed(const KeyboardEvent &evt)
 {
@@ -46,25 +54,30 @@ bool App::keyPressed(const KeyboardEvent &evt)
     return true;
 }
 
+
+
+
+
 bool App::frameStarted(const FrameEvent &evt)
 {
     Debug::Log(evt.timeSinceLastFrame);
     return true;
 }
 
+
+
+
+
 void App::setup()
 {
 // Setup
-#pragma region
     ApplicationContext::setup();
     root = getRoot();
     mng = root->createSceneManager();
     addInputListener(this);
     RTShader::ShaderGenerator::getSingletonPtr()->addSceneManager(mng);
-#pragma endregion
 
 // Camera and lighting
-#pragma region
     mng->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
     cam = mng->createCamera("FirstPersonCam");
     cam->setNearClipDistance(0.01);
@@ -73,15 +86,16 @@ void App::setup()
     camN->attachObject(cam);
     getRenderWindow()->addViewport(cam)->setBackgroundColour(ColourValue(float(135) / 255, float(206) / 255, float(235) / 255));
     camN->setPosition(Vector3(0, 105, 0));
-#pragma endregion
 
 // Mesh and rendering
-#pragma region
     Models::GenerateMeshes();
     BaseBlockEntity = mng->createEntity("UpMesh");
-#pragma endregion
     setWindowGrab(true);
 }
+
+
+
+
 
 void App::SetBlock(int x, int y, int z)
 {
@@ -89,6 +103,11 @@ void App::SetBlock(int x, int y, int z)
     node->attachObject(BaseBlockEntity->clone("Block (" + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) + ")"));
     node->setPosition(x, y, z);
 }
+
+
+
+
+
 App mc;
 int main()
 {
